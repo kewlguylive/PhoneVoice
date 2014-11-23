@@ -18,7 +18,11 @@ namespace PhoneVoice
 {
     public partial class App : Application
     {
-        public static string DB_PATH = Path.Combine(Path.Combine(ApplicationData.Current.LocalFolder.Path, "VoiceDB.sqlite"));
+        StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+        // C:\data\myfiles\IsolatedStore
+        //public static string DB_PATH = Path.Combine(ApplicationData.Current.LocalFolder.Path, "VoiceDB.sqlite");
+
+        public static string DBPath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "VoiceDB.sqlite");
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -71,43 +75,86 @@ namespace PhoneVoice
         //{
            
         //}
-        private async void Application_Launching(object sender, LaunchingEventArgs e)
+
+        async void databaseCode()
         {
-            await CopyDatabase();
-           // StorageFile dbFile = null;
-            //try
-            //{
-            //    // Try to get the 
-            //    dbFile = await StorageFile.GetFileFromPathAsync(DB_PATH);
-            //}
-            //catch (FileNotFoundException)
-            //{
-            //    if (dbFile == null)
-            //    {
-            //        // Copy file from installation folder to local folder.
-            //        // Obtain the virtual store for the application.
-            //        IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication();
+            StorageFile dbFile = null;
+            Boolean IsFileNotPresent = false;
+            try
+            {
 
-            //        // Create a stream for the file in the installation folder.
-            //        using (Stream input = Application.GetResourceStream(new Uri("VoiceDB.sqlite", UriKind.Relative)).Stream)
-            //        {
-            //            // Create a stream for the new file in the local folder.
-            //            using (IsolatedStorageFileStream output = iso.CreateFile(DB_PATH))
-            //            {
-            //                // Initialize the buffer.
-            //                byte[] readBuffer = new byte[4096];
-            //                int bytesRead = -1;
+                dbFile = await localFolder.GetFileAsync("VoiceDB.sqlite");
+                // Try to get the 
+                //dbFile = await StorageFile.GetFileFromPathAsync(DB_PATH);
+            }
+            catch (FileNotFoundException)
+            {
+                if (dbFile == null)
+                {
+                    IsFileNotPresent = true;
 
-            //                // Copy the file from the installation folder to the local folder. 
-            //                while ((bytesRead = input.Read(readBuffer, 0, readBuffer.Length)) > 0)
-            //                {
-            //                    output.Write(readBuffer, 0, bytesRead);
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+                    // Copy file from installation folder to local folder.
+                    // Obtain the virtual store for the application.
+                    //IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication();
+
+                    // Create a stream for the file in the installation folder.
+                    //using (Stream input = Application.GetResourceStream(new Uri("VoiceDB.sqlite", UriKind.Relative)).Stream)
+                    //{
+                    //    // Create a stream for the new file in the local folder.
+                    //    using (IsolatedStorageFileStream output = iso.CreateFile(DB_PATH))
+                    //    {
+                    //        // Initialize the buffer.
+                    //        byte[] readBuffer = new byte[4096];
+                    //        int bytesRead = -1;
+
+                    //        // Copy the file from the installation folder to the local folder. 
+                    //        while ((bytesRead = input.Read(readBuffer, 0, readBuffer.Length)) > 0)
+                    //        {
+                    //            output.Write(readBuffer, 0, bytesRead);
+                    //        }
+                    //    }
+                    //}
+                }
+               
+            }
+            if (IsFileNotPresent)
+            {
+                await CopyDatabase();
+            }
         }
+       
+       private async void Application_Launching(object sender, LaunchingEventArgs e)
+       {
+           string fileName = "VoiceDB.sqlite";
+           if (await DoesFileExistAsync(fileName))
+           {
+               // file exists;
+               string DBPath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path,
+                fileName);
+           }
+           else
+           {
+               // file does not exist
+               StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync(fileName);
+               await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
+               string DBPath = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, fileName);
+           }
+            
+           
+       }
+
+       private async Task<bool> DoesFileExistAsync(string fileName)
+       {
+           try
+           {
+               await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+               return true;
+           }
+           catch
+           {
+               return false;
+           }
+       }
 
         private async Task CopyDatabase()
         {

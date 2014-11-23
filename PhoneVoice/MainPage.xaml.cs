@@ -75,7 +75,7 @@ namespace PhoneVoice
 
         private async void SpeakoutQuestion()
         {
-            dbConn = new SQLiteConnection(App.DB_PATH);
+            dbConn = new SQLiteConnection(App.DBPath);
             quizQuestion = new QuizContent();
             quizQuestion = dbConn.Table<QuizContent>().FirstOrDefault(q => q.Result == 1);
             await synth.SpeakTextAsync(quizQuestion.Question);

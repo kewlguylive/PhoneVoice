@@ -72,13 +72,17 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,10,14,-10">
-            <Button Content="SpeakAnswer"  HorizontalAlignment="Left" Margin="147,164,0,0" VerticalAlignment="Top" Click="Button_Click" FontFamily="Calibri" Background="#FFF11F1F" Foreground="#FF1F11A4"/>
-            <TextBox x:Name="TextBoxVoice" HorizontalAlignment="Left" Height="72" Margin="172,252,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="284" Background="#FFE71F1F" FontFamily="Calibri" Foreground="#FF1F11A4" IsEnabled="False"/>
-            <TextBlock x:Name="Question" HorizontalAlignment="Left" Margin="5,271,0,0" TextWrapping="Wrap" Text="Your Answer" VerticalAlignment="Top" Width="162" Height="72" FontSize="25.33" FontFamily="Calibri" Foreground="#FF1F11A4"/>
-            <Button x:Name="btnYes" Content="Yes" HorizontalAlignment="Left" Margin="84,373,0,0" VerticalAlignment="Top" Click="Button_Click_1" Background="#FFE71F1F" FontFamily="Calibri" Foreground="#FF1F11A4"/>
-            <Button x:Name="btnNo" Content="No" HorizontalAlignment="Left" Margin="254,373,0,0" VerticalAlignment="Top" Click="Button_Click_2" FontFamily="Calibri" Foreground="#FF1F11A4" Background="#FFE71F1F"/>
-            <Button x:Name="btnNextQuestion" Content="Next Question" HorizontalAlignment="Left" Margin="147,481,0,0" VerticalAlignment="Top" Click="btnNextQuestion_Click" Foreground="#FF1F11A4" Background="#FFE71F1F" FontFamily="Calibri"/>
-            <TextBlock x:Name="TextBlockTimer" HorizontalAlignment="Left" Margin="172,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" Height="74" Foreground="#FF1F11A4" FontFamily="Segoe Keycaps" FontSize="45"/>
+
+            <TextBlock x:Name="TextBlockTimer" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="322,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" Height="74" Foreground="#FF1F11A4" FontFamily="Segoe Keycaps" FontSize="45" RenderTransformOrigin="0.495,0.5"/>
+            <Image x:Name="playSound" HorizontalAlignment="Left" Grid.Row="0"  Height="89" Margin="28,93,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="-0.68,0.359" Source="/Resources/playSound.png"/>
+
+            <Button x:Name="btnSpeakAnswer" Content="SpeakAnswer"  HorizontalAlignment="Left" Margin="132,190,0,0" VerticalAlignment="Top" Click="btnSpeakAnswer_Click" FontFamily="Calibri" Background="#FFF11F1F" Foreground="Black" RenderTransformOrigin="1.247,0.42"/>
+            <TextBox x:Name="TextBoxVoice" HorizontalAlignment="Left" Height="72" Margin="172,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="284" Background="#FFE71F1F" FontFamily="Calibri" Foreground="Black" IsReadOnly="True" FontWeight="ExtraBlack"/>
+            <TextBlock x:Name="Question" HorizontalAlignment="Left" Margin="5,283,0,0" TextWrapping="Wrap" Text="Your Answer" VerticalAlignment="Top" Width="162" Height="72" FontSize="25.33" FontFamily="Calibri" Foreground="Black"/>
+            <Button x:Name="btnYes" Content="Yes" HorizontalAlignment="Left" Margin="87,360,0,0" VerticalAlignment="Top" Click="btnYes_Click" Background="#FFE71F1F" FontFamily="Calibri" Foreground="Black" RenderTransformOrigin="0.438,-0.029" Width="102"/>
+            <Button x:Name="btnNo" Content="No" HorizontalAlignment="Left" Margin="229,360,0,0" VerticalAlignment="Top" Click="btnNo_Click" FontFamily="Calibri" Foreground="Black" Background="#FFE71F1F" Width="99" Height="74"/>
+            <Button x:Name="btnNextQuestion" Content="Next Question" HorizontalAlignment="Left" Margin="115,434,0,0" VerticalAlignment="Top" Click="btnNextQuestion_Click" Foreground="Black" Background="#FFE71F1F" FontFamily="Calibri" Width="191"/>
+            <TextBlock  HorizontalAlignment="Left" x:Name="TextBlockScore" Margin="28,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="0.512,0.481" Height="74" Width="278"/>
 
         </Grid>
 

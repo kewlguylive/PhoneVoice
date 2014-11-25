@@ -15,16 +15,24 @@ namespace PhoneVoice
         public Rules()
         {
             InitializeComponent();
+            DataContext = this;
+            txtBlockText.Text = "Each Question has 1 minute time.\r\n Every wrong answer and unanswered is treated as wrong \r\n Press Start Game button to Hear the 1st Question \r\n Press Speak Answer to say your answer" +
+                                 "\r\n Your Answer will be displayed back to you" +
+                                 "\r\n Hit Yes button if you feel right";
         }
 
         void OnLoad(object sender, RoutedEventArgs e)
         {
-            txtBlockText.Text = "Each Question has 1 minute time." +
-                                "Every wrong answer and unanswered question is treated as wrong" +
-                                "Press start game button to Hear the Question" +
-                                "Press Speak Answer to say your answer" +
-                                "Your Answer will be displayed back to you" +
-                                "Hit Yes button if you feel right";
+            
         }
+        public string ButtonText
+        {
+            get { return (string)GetValue(ButtonTextProperty); }
+            set { SetValue(ButtonTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ButtonText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ButtonTextProperty =
+            DependencyProperty.Register("ButtonText", typeof(string), typeof(Rules), new System.Windows.PropertyMetadata(""));
     }
 }

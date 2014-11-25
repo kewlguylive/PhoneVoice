@@ -23,13 +23,13 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Quiz 1.0" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FF2211A4" FontFamily="Calibri"/>
+            <TextBlock Text="Quiz 1.0" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FFF11F1F" FontFamily="Calibri"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0">
-            <Button x:Name="btnAbout" Content="How to Play" HorizontalAlignment="Left" Margin="134,94,0,0" VerticalAlignment="Top" Width="201" FontFamily="Calibri" Foreground="#FF1F11A4" Background="#FFABF32D" Height="88" Click="btnAbout_Click"/>
-            <Button x:Name="btnStart" Content="Start Quiz" HorizontalAlignment="Left" Margin="134,228,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.696,0.434" Width="201" Background="#FFABF32D" FontFamily="Calibri" Foreground="#FF1F11A4" Height="88" Click="btnStart_Click"/>
+            <Button x:Name="btnAbout" Content="How to Play" HorizontalAlignment="Left" Margin="134,94,0,0" VerticalAlignment="Top" Width="201" FontFamily="Calibri" Foreground="Black" Background="#FFF11F1F" Height="88" Click="btnAbout_Click"/>
+            <Button x:Name="btnStart" Content="Start Quiz" HorizontalAlignment="Left" Margin="134,228,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.696,0.434" Width="201" Background="#FFF11F1F" FontFamily="Calibri" Foreground="Black" Height="88" Click="btnStart_Click"/>
 
         </Grid>
     </Grid>

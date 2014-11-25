@@ -73,7 +73,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,10,14,-10">
             <Button Content="SpeakAnswer"  HorizontalAlignment="Left" Margin="147,164,0,0" VerticalAlignment="Top" Click="Button_Click" FontFamily="Calibri" Background="#FFF11F1F" Foreground="#FF1F11A4"/>
-            <TextBox x:Name="TextBoxVoice" HorizontalAlignment="Left" Height="72" Margin="172,252,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="284" Background="#FFE71F1F" FontFamily="Calibri" Foreground="#FF1F11A4"/>
+            <TextBox x:Name="TextBoxVoice" HorizontalAlignment="Left" Height="72" Margin="172,252,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="284" Background="#FFE71F1F" FontFamily="Calibri" Foreground="#FF1F11A4" IsEnabled="False"/>
             <TextBlock x:Name="Question" HorizontalAlignment="Left" Margin="5,271,0,0" TextWrapping="Wrap" Text="Your Answer" VerticalAlignment="Top" Width="162" Height="72" FontSize="25.33" FontFamily="Calibri" Foreground="#FF1F11A4"/>
             <Button x:Name="btnYes" Content="Yes" HorizontalAlignment="Left" Margin="84,373,0,0" VerticalAlignment="Top" Click="Button_Click_1" Background="#FFE71F1F" FontFamily="Calibri" Foreground="#FF1F11A4"/>
             <Button x:Name="btnNo" Content="No" HorizontalAlignment="Left" Margin="254,373,0,0" VerticalAlignment="Top" Click="Button_Click_2" FontFamily="Calibri" Foreground="#FF1F11A4" Background="#FFE71F1F"/>

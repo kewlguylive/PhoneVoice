@@ -140,7 +140,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\testTrialTwo.png" />
     <Content Include="Resources\playSound.png" />
+    <Content Include="Assets\testTrialOne.png" />
     <Content Include="VoiceQuizIcon.png" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
@@ -151,7 +153,9 @@
     <Content Include="SplashScreenImage.screen-WVGA.jpg" />
     <Content Include="SplashScreenImage.screen-WXGA.jpg" />
     <Content Include="SplashScreenImage.screen-720p.jpg" />
-    <Content Include="VoiceDB.sqlite" />
+    <Content Include="VoiceDB.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />

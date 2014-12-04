@@ -68,10 +68,20 @@ namespace PhoneVoice
 
             if (timeLimit == 0 || timeLimit < 0)
             {
-                // Include Code to update TimeOut Question as Wrong
-                quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
-                dbConn.Update(quizQuestion);
-                newTimer.Stop();
+                if (quizQuestion != null)
+                {
+                    quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
+                    dbConn.Update(quizQuestion);
+                    newTimer.Stop();
+                    txtBlockMessage.Text = "Next Question Please";
+                    btnNextQuestion.IsEnabled = true;
+                }
+                else
+                {
+                    newTimer.Stop();
+                    txtBlockMessage.Text = "Next Question Please";
+                    btnNextQuestion.IsEnabled = true;
+                }
                 // call some NextQuestion and disable everything else
                 return;
             }
@@ -114,6 +124,7 @@ namespace PhoneVoice
                 else
                 {
                     btnNextQuestion.IsEnabled = true;
+                    IsQuestionAsked = false;
                     btnNextQuestion.Content = "Result";
                     score = CalculateScore();
                     passScore = score.ToString();
@@ -123,6 +134,7 @@ namespace PhoneVoice
             else
             {
                 btnNextQuestion.IsEnabled = true;
+                IsQuestionAsked = false;
                 btnNextQuestion.Content = "Result";
                 score = CalculateScore();
                 passScore = score.ToString();
@@ -207,11 +219,16 @@ namespace PhoneVoice
                     /// Close the database connection.
                     dbConn.Close();
                 }
-                else 
+                else if (IsQuestionAsked)
                 {
                     quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
                     dbConn.Update(quizQuestion);
                     newTimer.Stop();
+                    dbConn.Close();
+                }
+                else
+                {
+                    dbConn.Close();
                 }
                 
             }
@@ -277,6 +294,7 @@ namespace PhoneVoice
                 await synth.SpeakTextAsync("Wrong Answer");
             }
             btnNextQuestion.IsEnabled = true;
+            IsQuestionAsked = false;
             btnYes.IsEnabled = false;
             btnNo.IsEnabled = false;
             btnPass.IsEnabled = false;
@@ -297,14 +315,19 @@ namespace PhoneVoice
         {
             if (IsQuestionAsked && dbConn != null)
             {
-                quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
-                dbConn.Update(quizQuestion);
-                newTimer.Stop();
+                if (quizQuestion != null)
+                {
+                    quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
+                    dbConn.Update(quizQuestion);
+                    newTimer.Stop();
+                }
+                
             }
             btnYes.IsEnabled = false;
             btnNo.IsEnabled = false;
             btnPass.IsEnabled = false;
             btnNextQuestion.IsEnabled = true;
+            IsQuestionAsked = false;
         }
 
         private void btnNextQuestion_Click(object sender, RoutedEventArgs e)

@@ -26,14 +26,17 @@ namespace PhoneVoice
         QuizContent quizQuestion;
         int VoiceCounter = 0;
         int correctTotal = 0;
-        int wrongTotal = 0;
         int timeLimit = 61;
         string userAnswer;
         Boolean tryAgain = false;
+        Boolean IsQuestionAsked = false;
+        Boolean IsErrorFound = false;
+        Boolean speechStatusFailed = false;
+        private DispatcherTimer newTimer;
         // Create a Speech Synthesizer
         SpeechSynthesizer synth = new SpeechSynthesizer();
-        // creating timer instance
-        DispatcherTimer newTimer = new DispatcherTimer();
+        //creating SpeechRecognizerUI
+        SpeechRecognizerUI recognizerWithUI = new SpeechRecognizerUI();
 
         // Constructor
         public MainPage()
@@ -46,23 +49,30 @@ namespace PhoneVoice
         }
         private void timerStart()
         {
-           
-            // timer interval specified as 1 second
-            newTimer.Interval = TimeSpan.FromSeconds(1);
-            // Sub-routine OnTimerTick will be called at every 1 second
-            newTimer.Tick += OnTimerTick;
+            // creating timer instance
+            if (this.newTimer == null)
+            {
+                newTimer = new DispatcherTimer();
+                //DispatcherTimer newTimer = new DispatcherTimer();
+                // timer interval specified as 1 second
+                newTimer.Interval = TimeSpan.FromSeconds(1);
+                // Sub-routine OnTimerTick will be called at every 1 second
+                newTimer.Tick += OnTimerTick;
+            }
             // starting the timer
             newTimer.Start();
         }
         void OnTimerTick(Object sender, EventArgs args)
         {
-            timeLimit--;
-            if (timeLimit == 0)
+            timeLimit = timeLimit - 1;
+
+            if (timeLimit == 0 || timeLimit < 0)
             {
                 // Include Code to update TimeOut Question as Wrong
                 quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
                 dbConn.Update(quizQuestion);
                 newTimer.Stop();
+                // call some NextQuestion and disable everything else
                 return;
             }
             TextBlockTimer.Text = timeLimit.ToString(); 
@@ -71,30 +81,54 @@ namespace PhoneVoice
         {
             await VoiceCommandService.InstallCommandSetsFromFileAsync(new Uri("ms-appx:///VoiceCommandDefinitionPhoneVoice.xml", UriKind.RelativeOrAbsolute));
         }
-        private void CalculateScore()
+        private int CalculateScore()
         {
             if (dbConn != null)
             {
                 correctTotal = dbConn.Table<QuizContent>().Count(q => q.Result == 2);
-                wrongTotal = dbConn.Table<QuizContent>().Count(q => q.Result == 3);
             }
             else
             {
                 dbConn = new SQLiteConnection(App.DBPath);
                 correctTotal = dbConn.Table<QuizContent>().Count(q => q.Result == 2);
-                wrongTotal = dbConn.Table<QuizContent>().Count(q => q.Result == 3);
             }
-            TextBlockScore.Text = "C" + correctTotal.ToString() + "W" + wrongTotal.ToString(); ;
+            return correctTotal;
         }
 
         private async void SpeakoutQuestion()
         {
+            int score = 0;
+            string passScore = string.Empty;
             dbConn = new SQLiteConnection(App.DBPath);
             quizQuestion = new QuizContent();
             quizQuestion = dbConn.Table<QuizContent>().FirstOrDefault(q => q.Result == 1);
-            await synth.SpeakTextAsync(quizQuestion.Question);
-            playSound.Visibility = System.Windows.Visibility.Collapsed;
-            btnSpeakAnswer.IsEnabled = true;
+            if (quizQuestion != null)
+            {
+                if (!string.IsNullOrEmpty(quizQuestion.Question))
+                {
+                    await synth.SpeakTextAsync(quizQuestion.Question);
+                    playSound.Visibility = System.Windows.Visibility.Collapsed;
+                    btnSpeakAnswer.IsEnabled = true;
+                    IsQuestionAsked = true;
+                }
+                else
+                {
+                    btnNextQuestion.IsEnabled = true;
+                    btnNextQuestion.Content = "Result";
+                    score = CalculateScore();
+                    passScore = score.ToString();
+                    NavigationService.Navigate(new Uri("/Result.xaml?score=" + passScore, UriKind.Relative));
+                }
+            }
+            else
+            {
+                btnNextQuestion.IsEnabled = true;
+                btnNextQuestion.Content = "Result";
+                score = CalculateScore();
+                passScore = score.ToString();
+                NavigationService.Navigate(new Uri("/Result.xaml?score=" + passScore, UriKind.Relative));
+            }
+             
         }
 
         private void disableControls()
@@ -102,8 +136,9 @@ namespace PhoneVoice
             btnNextQuestion.IsEnabled = false;
             btnYes.IsEnabled = false;
             btnNo.IsEnabled = false;
+            btnPass.IsEnabled = false;
             btnSpeakAnswer.IsEnabled = false;
-            TextBlockScore.Text = "";
+            txtBlockMessage.Text = string.Empty;
         }
 
         // Sample code for building a localized ApplicationBar
@@ -125,7 +160,6 @@ namespace PhoneVoice
         {
             base.OnNavigatedTo(e);
             disableControls();
-            CalculateScore();
             SpeakoutQuestion();
             timerStart();
             // Is this a new activation or a resurrection from tombstone?
@@ -168,21 +202,59 @@ namespace PhoneVoice
             base.OnNavigatedFrom(e);
             if (dbConn != null)
             {
-                /// Close the database connection.
-                dbConn.Close();
+                if (IsQuestionAsked && (speechStatusFailed || IsErrorFound))
+                {
+                    /// Close the database connection.
+                    dbConn.Close();
+                }
+                else 
+                {
+                    quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
+                    dbConn.Update(quizQuestion);
+                    newTimer.Stop();
+                }
+                
             }
+
         }
 
         private async void btnSpeakAnswer_Click(object sender, RoutedEventArgs e)
         {
-                var recognizerWithUI = new SpeechRecognizerUI();
+            try
+            {
                 recognizerWithUI.Settings.ListenText = "Speak Your Answer";
                 SpeechRecognitionUIResult recognizerResult = await recognizerWithUI.RecognizeWithUIAsync();
-                TextBoxVoice.Text = recognizerResult.RecognitionResult.Text;
-                userAnswer = recognizerResult.RecognitionResult.Text;
-                btnYes.IsEnabled = true;
-                btnNo.IsEnabled = true;
-                btnSpeakAnswer.IsEnabled = false;
+                SpeechRecognitionUIStatus speechRecognitionUiStatus = recognizerResult.ResultStatus;
+                if (speechRecognitionUiStatus == SpeechRecognitionUIStatus.Succeeded)
+                {
+                    TextBoxVoice.Text = recognizerResult.RecognitionResult.Text;
+                    userAnswer = recognizerResult.RecognitionResult.Text;
+                    btnYes.IsEnabled = true;
+                    btnNo.IsEnabled = true;
+                    btnPass.IsEnabled = true;
+                    btnSpeakAnswer.IsEnabled = false;
+                }
+                else
+                {
+                    speechStatusFailed = true;
+                    if (IsQuestionAsked && speechStatusFailed)
+                    {
+                        txtBlockMessage.Text = "Press Back Button and Resume";
+                    }
+                } 
+            }
+            catch (Exception ex)
+            {
+                if (ex.HResult > 0)
+                {
+                    IsErrorFound = true;
+                    if (IsQuestionAsked && IsErrorFound)
+                    {
+                        txtBlockMessage.Text = "Press Back Button and Resume";
+                    }
+                    
+                }
+            }      
         }
 
         private async void btnYes_Click(object sender, RoutedEventArgs e)
@@ -202,11 +274,12 @@ namespace PhoneVoice
                 quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
                 dbConn.Update(quizQuestion);
                 newTimer.Stop();
-                await synth.SpeakTextAsync("Sorry...Wrong Answer");
+                await synth.SpeakTextAsync("Wrong Answer");
             }
             btnNextQuestion.IsEnabled = true;
             btnYes.IsEnabled = false;
             btnNo.IsEnabled = false;
+            btnPass.IsEnabled = false;
         }
 
         private async void btnNo_Click(object sender, RoutedEventArgs e)
@@ -217,21 +290,40 @@ namespace PhoneVoice
             btnSpeakAnswer.IsEnabled = true;
             btnYes.IsEnabled = false;
             btnNo.IsEnabled = false;
+            btnPass.IsEnabled = false;
+        }
+
+        private void btnPass_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsQuestionAsked && dbConn != null)
+            {
+                quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
+                dbConn.Update(quizQuestion);
+                newTimer.Stop();
+            }
+            btnYes.IsEnabled = false;
+            btnNo.IsEnabled = false;
+            btnPass.IsEnabled = false;
+            btnNextQuestion.IsEnabled = true;
         }
 
         private void btnNextQuestion_Click(object sender, RoutedEventArgs e)
         {
             TextBlockTimer.Text = string.Empty;
             TextBoxVoice.Text = string.Empty;
-            TextBlockScore.Text = string.Empty;
+            txtBlockMessage.Text = string.Empty;
             quizQuestion = null;
             disableControls();
-            CalculateScore();
             SpeakoutQuestion();
+            newTimer.Interval = TimeSpan.FromSeconds(0);
+            newTimer.Stop();
             timeLimit = 61;
             playSound.Visibility = System.Windows.Visibility.Visible;
+            newTimer = null;
             timerStart();
         }
+
+        
 
     }
 }

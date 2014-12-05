@@ -153,21 +153,6 @@ namespace PhoneVoice
             txtBlockMessage.Text = string.Empty;
         }
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
-
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -221,18 +206,20 @@ namespace PhoneVoice
                 }
                 else if (IsQuestionAsked)
                 {
-                    quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
-                    dbConn.Update(quizQuestion);
-                    newTimer.Stop();
-                    dbConn.Close();
+                    if (quizQuestion != null)
+                    {
+                        quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
+                       // if result is other than , no need to update
+                        dbConn.Update(quizQuestion);
+                        newTimer.Stop();
+                        dbConn.Close();
+                    }  
                 }
                 else
                 {
                     dbConn.Close();
-                }
-                
+                }  
             }
-
         }
 
         private async void btnSpeakAnswer_Click(object sender, RoutedEventArgs e)
@@ -276,7 +263,9 @@ namespace PhoneVoice
 
         private async void btnYes_Click(object sender, RoutedEventArgs e)
         {
-            // Yes Button
+            try
+            {
+                // Yes Button
             if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(userAnswer, quizQuestion.Answer, CompareOptions.IgnoreCase) >= 0)
             {
                 //Save to DB
@@ -298,17 +287,46 @@ namespace PhoneVoice
             btnYes.IsEnabled = false;
             btnNo.IsEnabled = false;
             btnPass.IsEnabled = false;
+            }
+            catch (Exception ex)
+            {
+                if (ex.HResult > 0)
+                {
+                    IsErrorFound = true;
+                    if (IsQuestionAsked && IsErrorFound)
+                    {
+                        txtBlockMessage.Text = "Press Back Button and Resume";
+                    }
+
+                }
+            }    
+            
         }
 
         private async void btnNo_Click(object sender, RoutedEventArgs e)
         {
-            //No Button
-            tryAgain = true;
-            await synth.SpeakTextAsync("Press SpeakAnswer Again");
-            btnSpeakAnswer.IsEnabled = true;
-            btnYes.IsEnabled = false;
-            btnNo.IsEnabled = false;
-            btnPass.IsEnabled = false;
+            try
+            {
+                tryAgain = true;
+                await synth.SpeakTextAsync("Press SpeakAnswer Again");
+                btnSpeakAnswer.IsEnabled = true;
+                btnYes.IsEnabled = false;
+                btnNo.IsEnabled = false;
+                btnPass.IsEnabled = false;
+            }
+            catch (Exception ex)
+            {
+                if (ex.HResult > 0)
+                {
+                    IsErrorFound = true;
+                    if (IsQuestionAsked && IsErrorFound)
+                    {
+                        txtBlockMessage.Text = "Press Back Button and Resume";
+                    }
+
+                }
+            }
+            
         }
 
         private void btnPass_Click(object sender, RoutedEventArgs e)
@@ -344,6 +362,40 @@ namespace PhoneVoice
             playSound.Visibility = System.Windows.Visibility.Visible;
             newTimer = null;
             timerStart();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsQuestionAsked && (speechStatusFailed || IsErrorFound))
+            {
+                newTimer.Stop();
+                if (dbConn != null)
+                {
+                    dbConn.Close();
+                }
+                NavigationService.Navigate(new Uri("/StartPage.xaml", UriKind.Relative));
+            }
+            else if (IsQuestionAsked)
+            {
+                if (quizQuestion != null)
+                {
+                    quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
+                    dbConn.Update(quizQuestion);
+                    newTimer.Stop();
+                    dbConn.Close();
+                }
+                NavigationService.Navigate(new Uri("/StartPage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                newTimer.Stop();
+                if (dbConn != null)
+                {
+                    dbConn.Close();
+                }
+                NavigationService.Navigate(new Uri("/StartPage.xaml", UriKind.Relative));
+            }
+            
         }
 
         

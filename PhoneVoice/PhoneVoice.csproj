@@ -141,6 +141,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\testTrialTwo.png" />
+    <Content Include="IconicTileMediumLarge.png" />
+    <Content Include="IconicTileSmall.png" />
     <Content Include="Resources\playSound.png" />
     <Content Include="Assets\testTrialOne.png" />
     <Content Include="VoiceQuizIcon.png" />

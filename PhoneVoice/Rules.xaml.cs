@@ -16,9 +16,6 @@ namespace PhoneVoice
         {
             InitializeComponent();
             DataContext = this;
-            txtBlockText.Text = "Each Question has 1 minute time.\r\n Every wrong answer and unanswered is treated as wrong \r\n Press Start Game button to Hear the 1st Question \r\n Press Speak Answer to say your answer" +
-                                 "\r\n Your Answer will be displayed back to you" +
-                                 "\r\n Hit Yes button if you feel right";
         }
 
         void OnLoad(object sender, RoutedEventArgs e)
@@ -34,5 +31,10 @@ namespace PhoneVoice
         // Using a DependencyProperty as the backing store for ButtonText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ButtonTextProperty =
             DependencyProperty.Register("ButtonText", typeof(string), typeof(Rules), new System.Windows.PropertyMetadata(""));
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/StartPage.xaml", UriKind.Relative));
+        }
     }
 }

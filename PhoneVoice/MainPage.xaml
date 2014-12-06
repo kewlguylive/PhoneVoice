@@ -74,7 +74,7 @@
             <Button x:Name="btnNo" Content="No" HorizontalAlignment="Left" Margin="167,341,0,0" VerticalAlignment="Top" Click="btnNo_Click" FontFamily="Calibri" Foreground="Black" Background="#FFE71F1F" Width="127" Height="98"/>
             <Button x:Name="btnNextQuestion" Content="Next Question" HorizontalAlignment="Left" Margin="128,449,0,0" VerticalAlignment="Top" Click="btnNextQuestion_Click" Foreground="Black" Background="#FFE71F1F" FontFamily="Calibri" Width="218" Height="101"/>
             <Button x:Name="btnPass" Content="Pass" HorizontalAlignment="Left" Margin="304,341,0,0" VerticalAlignment="Top" Background="#FFE71F1F" BorderBrush="White" Foreground="Black" Width="123" Height="98" FontFamily="Calibri" Click="btnPass_Click"/>
-            <TextBlock x:Name="txtBlockMessage" HorizontalAlignment="Left" Margin="28,547,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="399" Height="60" Foreground="Black" FontFamily="Calibri"/>
+            <TextBlock x:Name="txtBlockMessage" HorizontalAlignment="Left" Margin="28,547,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="399" Height="60" Foreground="Black" FontFamily="Calibri" FontSize="24" FontWeight="Black"/>
 
         </Grid>
 

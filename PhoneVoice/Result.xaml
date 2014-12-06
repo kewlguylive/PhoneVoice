@@ -30,11 +30,11 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,0,10,0">
+        <Grid x:Name="ContentPanel" Margin="14,0,10,0" Grid.Row="1">
             <TextBlock x:Name="txtBlockResult" HorizontalAlignment="Left" Margin="10,47,0,0" TextWrapping="Wrap" Text="Correct Score" VerticalAlignment="Top" Width="121" Height="69" FontFamily="Calibri" Foreground="Black" FontWeight="Black"/>
-            <TextBox   x:Name="txtBoxScore"  HorizontalAlignment="Left" Height="72" Margin="136,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="257" FontWeight="Black" FontFamily="Calibri" IsEnabled="False" Background="#FFE71F1F"/>
-            <TextBlock x:Name="txtBlockGrade" HorizontalAlignment="Left" Margin="10,148,0,0" TextWrapping="Wrap" Text="Final Grade" VerticalAlignment="Top" Width="121" Height="42" FontFamily="Calibri" Foreground="Black" FontWeight="Black"/>
-            <TextBox x:Name="txtBoxGrade" HorizontalAlignment="Left" Height="72" Margin="136,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="193" FontFamily="Calibri" IsEnabled="False" Background="#FFE71F1F"/>
+            <TextBlock x:Name="txtBlockGrade" HorizontalAlignment="Left" Margin="10,133,0,0" TextWrapping="Wrap" Text="Final Grade" VerticalAlignment="Top" Width="121" Height="42" FontFamily="Calibri" Foreground="Black" FontWeight="Black"/>
+            <TextBlock x:Name="txtBlockScore" HorizontalAlignment="Left" Margin="155,43,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="124" Height="60" FontFamily="Calibri" FontSize="24" FontWeight="Black" Foreground="Black"/>
+            <TextBlock x:Name="txtBlockGradeText" HorizontalAlignment="Left" Margin="155,133,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="55" Width="110" FontFamily="Calibri" FontSize="24" FontWeight="Black" Foreground="Black"/>
 
         </Grid>
     </Grid>

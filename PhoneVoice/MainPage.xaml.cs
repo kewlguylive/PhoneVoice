@@ -24,14 +24,14 @@ namespace PhoneVoice
     {
         private SQLiteConnection dbConn;
         QuizContent quizQuestion;
-        int VoiceCounter = 0;
         int correctTotal = 0;
         int timeLimit = 61;
+        string passScore = string.Empty;
         string userAnswer;
-        Boolean tryAgain = false;
         Boolean IsQuestionAsked = false;
         Boolean IsErrorFound = false;
         Boolean speechStatusFailed = false;
+        Boolean IsBackButtonFired = false;
         private DispatcherTimer newTimer;
         // Create a Speech Synthesizer
         SpeechSynthesizer synth = new SpeechSynthesizer();
@@ -114,7 +114,6 @@ namespace PhoneVoice
         private async void SpeakoutQuestion()
         {
             int score = 0;
-            string passScore = string.Empty;
             dbConn = new SQLiteConnection(App.DBPath);
             quizQuestion = new QuizContent();
             quizQuestion = dbConn.Table<QuizContent>().FirstOrDefault(q => q.Result == 1);
@@ -134,7 +133,7 @@ namespace PhoneVoice
                     btnNextQuestion.Content = "Result";
                     score = CalculateScore();
                     passScore = score.ToString();
-                    NavigationService.Navigate(new Uri("/Result.xaml?score=" + passScore, UriKind.Relative));
+                    txtBlockMessage.Text = "Please Press Result";
                 }
             }
             else
@@ -144,7 +143,7 @@ namespace PhoneVoice
                 btnNextQuestion.Content = "Result";
                 score = CalculateScore();
                 passScore = score.ToString();
-                NavigationService.Navigate(new Uri("/Result.xaml?score=" + passScore, UriKind.Relative));
+                txtBlockMessage.Text = "Please Press Result";
             }
              
         }
@@ -159,14 +158,22 @@ namespace PhoneVoice
             txtBlockMessage.Text = string.Empty;
             TextBoxVoice.Text = string.Empty;
             TextBlockTimer.Text = string.Empty;
+            playSound.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back)
+            {
+                IsBackButtonFired = true;
+            }
             disableControls();
             SpeakoutQuestion();
-            timerStart();
+            if (quizQuestion !=null)
+            {
+                timerStart();
+            }
             // Is this a new activation or a resurrection from tombstone?
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New)
             {
@@ -320,7 +327,6 @@ namespace PhoneVoice
                 btnYes.IsEnabled = false;
                 btnNo.IsEnabled = false;
                 btnPass.IsEnabled = false;
-                tryAgain = true;
                 await synth.SpeakTextAsync("Press SpeakAnswer Again");
                 btnSpeakAnswer.IsEnabled = true; 
             }
@@ -359,55 +365,32 @@ namespace PhoneVoice
 
         private void btnNextQuestion_Click(object sender, RoutedEventArgs e)
         {
-            TextBlockTimer.Text = string.Empty;
-            TextBoxVoice.Text = string.Empty;
-            txtBlockMessage.Text = string.Empty;
-            quizQuestion = null;
-            disableControls();
-            SpeakoutQuestion();
-            newTimer.Interval = TimeSpan.FromSeconds(0);
-            newTimer.Stop();
-            timeLimit = 61;
-            playSound.Visibility = System.Windows.Visibility.Visible;
-            newTimer = null;
-            timerStart();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (IsQuestionAsked && (speechStatusFailed || IsErrorFound))
+            if (IsBackButtonFired || quizQuestion == null)
             {
-                newTimer.Stop();
-                if (dbConn != null)
-                {
-                    dbConn.Close();
-                }
-                NavigationService.Navigate(new Uri("/StartPage.xaml", UriKind.Relative));
-            }
-            else if (IsQuestionAsked)
-            {
-                if (quizQuestion != null)
-                {
-                    quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
-                    dbConn.Update(quizQuestion);
-                    newTimer.Stop();
-                    dbConn.Close();
-                }
-                NavigationService.Navigate(new Uri("/StartPage.xaml", UriKind.Relative));
+                disableControls();
+                playSound.Visibility = System.Windows.Visibility.Collapsed;
+                btnNextQuestion.IsEnabled = true;
+                btnNextQuestion.Content = "Result";
+                txtBlockMessage.Text = "Please Press Result";
+                NavigationService.Navigate(new Uri("/Result.xaml?score=" + passScore, UriKind.Relative));
             }
             else
             {
+                TextBlockTimer.Text = string.Empty;
+                TextBoxVoice.Text = string.Empty;
+                txtBlockMessage.Text = string.Empty;
+                quizQuestion = null;
+                disableControls();
+                SpeakoutQuestion();
+                newTimer.Interval = TimeSpan.FromSeconds(0);
                 newTimer.Stop();
-                if (dbConn != null)
-                {
-                    dbConn.Close();
-                }
-                NavigationService.Navigate(new Uri("/StartPage.xaml", UriKind.Relative));
+                timeLimit = 61;
+                playSound.Visibility = System.Windows.Visibility.Visible;
+                newTimer = null;
+                timerStart();
             }
-            
+           
         }
-
-        
 
     }
 }

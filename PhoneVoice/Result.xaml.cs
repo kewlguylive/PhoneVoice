@@ -19,47 +19,46 @@ namespace PhoneVoice
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            txtBoxGrade.IsReadOnly = true;
-            txtBoxScore.IsReadOnly = true;
             string parameterValue1 = NavigationContext.QueryString["score"];
-            txtBoxScore.Text = parameterValue1;
+            txtBlockScore.Text = parameterValue1;
             if (!string.IsNullOrEmpty(parameterValue1))
             {
                 if (Convert.ToInt32(parameterValue1) >= 82)
                 {
-                    txtBoxScore.Text = parameterValue1;
-                    txtBoxGrade.Text = "A+";
+                    txtBlockScore.Text = parameterValue1;
+                    txtBlockGradeText.Text = "A+";
                 }
                 else if (Convert.ToInt32(parameterValue1) >= 70)
                 {
-                    txtBoxScore.Text = parameterValue1;
-                    txtBoxGrade.Text = "A";
+                    txtBlockScore.Text = parameterValue1;
+                    txtBlockGradeText.Text = "A";
                 }
                 else if (Convert.ToInt32(parameterValue1) >= 60)
                 {
-                    txtBoxScore.Text = parameterValue1;
-                    txtBoxGrade.Text = "B+";
+                    txtBlockScore.Text = parameterValue1;
+                    txtBlockGradeText.Text = "B+";
                 }
                 else if (Convert.ToInt32(parameterValue1) >= 50)
                 {
-                    txtBoxScore.Text = parameterValue1;
-                    txtBoxGrade.Text = "B";
+                    txtBlockScore.Text = parameterValue1;
+                    txtBlockGradeText.Text = "B";
                 }
                 else if (Convert.ToInt32(parameterValue1) >= 40)
                 {
-                    txtBoxScore.Text = parameterValue1;
-                    txtBoxGrade.Text = "C";
+                    txtBlockScore.Text = parameterValue1;
+                    txtBlockGradeText.Text = "C";
                 }
                 else
                 {
-                    txtBoxScore.Text = parameterValue1;
-                    txtBoxGrade.Text = "C-";
+                    txtBlockScore.Text = parameterValue1;
+                    txtBlockGradeText.Text = "C-";
                 }
             }
             else
             {
-                txtBoxGrade.Text = "Error Found";
+                txtBlockScore.Text = "Error Found";
             }
+            
 
         }
     }

@@ -74,12 +74,18 @@ namespace PhoneVoice
                     dbConn.Update(quizQuestion);
                     newTimer.Stop();
                     txtBlockMessage.Text = "Next Question Please";
+                    btnYes.IsEnabled = false;
+                    btnNo.IsEnabled = false; 
+                    btnPass.IsEnabled = false;
                     btnNextQuestion.IsEnabled = true;
                 }
                 else
                 {
                     newTimer.Stop();
                     txtBlockMessage.Text = "Next Question Please";
+                    btnYes.IsEnabled = false;
+                    btnNo.IsEnabled = false;
+                    btnPass.IsEnabled = false;
                     btnNextQuestion.IsEnabled = true;
                 }
                 // call some NextQuestion and disable everything else
@@ -151,6 +157,8 @@ namespace PhoneVoice
             btnPass.IsEnabled = false;
             btnSpeakAnswer.IsEnabled = false;
             txtBlockMessage.Text = string.Empty;
+            TextBoxVoice.Text = string.Empty;
+            TextBlockTimer.Text = string.Empty;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -206,14 +214,14 @@ namespace PhoneVoice
                 }
                 else if (IsQuestionAsked)
                 {
-                    if (quizQuestion != null)
+                    if (quizQuestion != null && quizQuestion.Result ==1)
                     {
                         quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
                        // if result is other than , no need to update
-                        dbConn.Update(quizQuestion);
-                        newTimer.Stop();
-                        dbConn.Close();
-                    }  
+                        dbConn.Update(quizQuestion);   
+                    }
+                    newTimer.Stop();
+                    dbConn.Close();
                 }
                 else
                 {
@@ -268,6 +276,8 @@ namespace PhoneVoice
                 // Yes Button
             if (CultureInfo.CurrentCulture.CompareInfo.IndexOf(userAnswer, quizQuestion.Answer, CompareOptions.IgnoreCase) >= 0)
             {
+                btnNo.IsEnabled = false;
+                btnPass.IsEnabled = false;
                 //Save to DB
                 quizQuestion.Result  = Convert.ToInt32(ResultCode.Correct);
                 dbConn.Update(quizQuestion);
@@ -277,6 +287,8 @@ namespace PhoneVoice
             }
             else
             {
+                btnNo.IsEnabled = false;
+                btnPass.IsEnabled = false;
                 quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
                 dbConn.Update(quizQuestion);
                 newTimer.Stop();
@@ -285,8 +297,6 @@ namespace PhoneVoice
             btnNextQuestion.IsEnabled = true;
             IsQuestionAsked = false;
             btnYes.IsEnabled = false;
-            btnNo.IsEnabled = false;
-            btnPass.IsEnabled = false;
             }
             catch (Exception ex)
             {
@@ -307,12 +317,12 @@ namespace PhoneVoice
         {
             try
             {
-                tryAgain = true;
-                await synth.SpeakTextAsync("Press SpeakAnswer Again");
-                btnSpeakAnswer.IsEnabled = true;
                 btnYes.IsEnabled = false;
                 btnNo.IsEnabled = false;
                 btnPass.IsEnabled = false;
+                tryAgain = true;
+                await synth.SpeakTextAsync("Press SpeakAnswer Again");
+                btnSpeakAnswer.IsEnabled = true; 
             }
             catch (Exception ex)
             {
@@ -331,6 +341,8 @@ namespace PhoneVoice
 
         private void btnPass_Click(object sender, RoutedEventArgs e)
         {
+            btnYes.IsEnabled = false;
+            btnNo.IsEnabled = false;
             if (IsQuestionAsked && dbConn != null)
             {
                 if (quizQuestion != null)
@@ -338,11 +350,8 @@ namespace PhoneVoice
                     quizQuestion.Result = Convert.ToInt32(ResultCode.Wrong);
                     dbConn.Update(quizQuestion);
                     newTimer.Stop();
-                }
-                
+                }  
             }
-            btnYes.IsEnabled = false;
-            btnNo.IsEnabled = false;
             btnPass.IsEnabled = false;
             btnNextQuestion.IsEnabled = true;
             IsQuestionAsked = false;

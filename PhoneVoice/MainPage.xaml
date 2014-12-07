@@ -81,7 +81,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock x:Name="TextBlockTimer" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" Margin="39,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" Height="74" Foreground="#FF1F11A4" FontFamily="Segoe Keycaps" FontSize="45" RenderTransformOrigin="0.495,0.5" Grid.ColumnSpan="2"/>
-            <Image x:Name="playSound" HorizontalAlignment="Left" Grid.Row="0"  Height="75" Margin="18,47,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="-0.68,0.359" Source="/Resources/playSound.png" Grid.Column="1"/>
+            <Image x:Name="playSound" HorizontalAlignment="Left" Grid.Row="0"  Height="75" Margin="18,65,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="-0.68,0.359" Source="/Resources/playSound.png" Grid.Column="1"/>
 
             <Button x:Name="btnSpeakAnswer" Content="SpeakAnswer"  HorizontalAlignment="Left" Margin="118,127,0,0" VerticalAlignment="Top" Click="btnSpeakAnswer_Click" FontFamily="Calibri" Background="#FFF11F1F" Foreground="Black" RenderTransformOrigin="1.247,0.42" Height="89" Width="218" Grid.ColumnSpan="4" Grid.Column="1"/>
             <TextBox x:Name="TextBoxVoice" HorizontalAlignment="Left" Height="72" Margin="162,216,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="284" Background="#FFE71F1F" FontFamily="Calibri" Foreground="Black" IsReadOnly="True" FontWeight="ExtraBlack" Grid.ColumnSpan="4" Grid.Column="1"/>

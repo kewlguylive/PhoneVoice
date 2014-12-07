@@ -121,6 +121,7 @@ namespace VoiceQuiz
             {
                 if (!string.IsNullOrEmpty(quizQuestion.Question))
                 {
+                    playSound.Visibility = System.Windows.Visibility.Visible;
                     await synth.SpeakTextAsync(quizQuestion.Question);
                     playSound.Visibility = System.Windows.Visibility.Collapsed;
                     btnSpeakAnswer.IsEnabled = true;
@@ -170,6 +171,7 @@ namespace VoiceQuiz
             }
             disableControls();
             SpeakoutQuestion();
+            
             if (quizQuestion !=null)
             {
                 timerStart();
@@ -381,7 +383,9 @@ namespace VoiceQuiz
                 txtBlockMessage.Text = string.Empty;
                 quizQuestion = null;
                 disableControls();
+
                 SpeakoutQuestion();
+               
                 newTimer.Interval = TimeSpan.FromSeconds(0);
                 newTimer.Stop();
                 timeLimit = 61;

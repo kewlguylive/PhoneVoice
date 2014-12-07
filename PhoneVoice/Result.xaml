@@ -1,11 +1,12 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="PhoneVoice.Result"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"
+    x:Class="PhoneVoice.Result"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -21,20 +22,26 @@
         </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/testTrialTwo.png"
-                    Stretch="UniformToFill" />
+				Stretch="UniformToFill" />
         </Grid.Background>
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="Voice Quiz" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FFE71F1F"/>
-            <TextBlock Text="Quiz 1.0" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FFE71F1F" FontFamily="Calibri"/>
+            <TextBlock Text="Quiz 1.0" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FFE71F1F" FontFamily="Calibri" Height="79"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Margin="14,0,10,0" Grid.Row="1">
+        <Grid x:Name="ContentPanel" Margin="14,121,10,0" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="85*"/>
+                <ColumnDefinition Width="143*"/>
+            </Grid.ColumnDefinitions>
             <TextBlock x:Name="txtBlockResult" HorizontalAlignment="Left" Margin="10,47,0,0" TextWrapping="Wrap" Text="Correct Score" VerticalAlignment="Top" Width="121" Height="69" FontFamily="Calibri" Foreground="Black" FontWeight="Black"/>
             <TextBlock x:Name="txtBlockGrade" HorizontalAlignment="Left" Margin="10,133,0,0" TextWrapping="Wrap" Text="Final Grade" VerticalAlignment="Top" Width="121" Height="42" FontFamily="Calibri" Foreground="Black" FontWeight="Black"/>
-            <TextBlock x:Name="txtBlockScore" HorizontalAlignment="Left" Margin="155,43,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="124" Height="60" FontFamily="Calibri" FontSize="24" FontWeight="Black" Foreground="Black"/>
-            <TextBlock x:Name="txtBlockGradeText" HorizontalAlignment="Left" Margin="155,133,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="55" Width="110" FontFamily="Calibri" FontSize="24" FontWeight="Black" Foreground="Black"/>
+            <TextBlock x:Name="txtBlockScore" HorizontalAlignment="Left" Margin="155,43,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="124" Height="60" FontFamily="Calibri" FontSize="24" FontWeight="Black" Foreground="Black" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="txtBlockGradeText" HorizontalAlignment="Left" Margin="155,133,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="55" Width="110" FontFamily="Calibri" FontSize="24" FontWeight="Black" Foreground="Black" Grid.ColumnSpan="2"/>
+
+            <UI:AdControl ApplicationId="test_client" AdUnitId="Image480_80" HorizontalAlignment="Left" Height="99" Margin="0,548,0,0" VerticalAlignment="Top" Width="456" Grid.ColumnSpan="2"/>
 
         </Grid>
     </Grid>

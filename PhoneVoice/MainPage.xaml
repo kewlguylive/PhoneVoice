@@ -1,11 +1,12 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="PhoneVoice.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"
+    x:Class="PhoneVoice.MainPage"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -21,7 +22,7 @@
         </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/testTrialTwo.png"
-                    Stretch="UniformToFill" />
+				Stretch="UniformToFill" />
         </Grid.Background>
         <!-- LOCALIZATION NOTE:
             To localize the displayed strings copy their values to appropriately named
@@ -42,42 +43,6 @@
             CurrentUICulture of the app at run time.
          -->
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Voice Quiz" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0" Foreground="#FFE71F1F" FontFamily="Calibri"/>
-            <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="Calibri" OpacityMask="#FFFDFDF9">
-            	<Run Text="Quiz 1.0">
-            		<Run.Foreground>
-            			<SolidColorBrush Color="#FFF31F1F">
-            				<SolidColorBrush.RelativeTransform>
-            					<MatrixTransform Matrix="Identity"/>
-            				</SolidColorBrush.RelativeTransform>
-            				<SolidColorBrush.Transform>
-            					<MatrixTransform Matrix="Identity"/>
-            				</SolidColorBrush.Transform>
-            			</SolidColorBrush>
-            		</Run.Foreground>
-            	</Run>
-            </TextBlock>
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,0,10,0">
-
-            <TextBlock x:Name="TextBlockTimer" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="322,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" Height="74" Foreground="#FF1F11A4" FontFamily="Segoe Keycaps" FontSize="45" RenderTransformOrigin="0.495,0.5"/>
-            <Image x:Name="playSound" HorizontalAlignment="Left" Grid.Row="0"  Height="75" Margin="28,75,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="-0.68,0.359" Source="/Resources/playSound.png"/>
-
-            <Button x:Name="btnSpeakAnswer" Content="SpeakAnswer"  HorizontalAlignment="Left" Margin="128,150,0,0" VerticalAlignment="Top" Click="btnSpeakAnswer_Click" FontFamily="Calibri" Background="#FFF11F1F" Foreground="Black" RenderTransformOrigin="1.247,0.42" Height="109" Width="218"/>
-            <TextBox x:Name="TextBoxVoice" HorizontalAlignment="Left" Height="72" Margin="172,264,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="284" Background="#FFE71F1F" FontFamily="Calibri" Foreground="Black" IsReadOnly="True" FontWeight="ExtraBlack"/>
-            <TextBlock x:Name="Question" HorizontalAlignment="Left" Margin="5,283,0,0" TextWrapping="Wrap" Text="Your Answer" VerticalAlignment="Top" Width="162" Height="72" FontSize="25.33" FontFamily="Calibri" Foreground="Black"/>
-            <Button x:Name="btnYes" Content="Yes" HorizontalAlignment="Left" Margin="10,341,0,0" VerticalAlignment="Top" Click="btnYes_Click" Background="#FFE71F1F" FontFamily="Calibri" Foreground="Black" RenderTransformOrigin="0.438,-0.029" Width="126" Height="98"/>
-            <Button x:Name="btnNo" Content="No" HorizontalAlignment="Left" Margin="167,341,0,0" VerticalAlignment="Top" Click="btnNo_Click" FontFamily="Calibri" Foreground="Black" Background="#FFE71F1F" Width="127" Height="98"/>
-            <Button x:Name="btnNextQuestion" Content="Next Question" HorizontalAlignment="Left" Margin="128,449,0,0" VerticalAlignment="Top" Click="btnNextQuestion_Click" Foreground="Black" Background="#FFE71F1F" FontFamily="Calibri" Width="218" Height="101"/>
-            <Button x:Name="btnPass" Content="Pass" HorizontalAlignment="Left" Margin="304,341,0,0" VerticalAlignment="Top" Background="#FFE71F1F" BorderBrush="White" Foreground="Black" Width="123" Height="98" FontFamily="Calibri" Click="btnPass_Click"/>
-            <TextBlock x:Name="txtBlockMessage" HorizontalAlignment="Left" Margin="28,547,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="399" Height="60" Foreground="Black" FontFamily="Calibri" FontSize="24" FontWeight="Black"/>
-
-        </Grid>
-
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to
@@ -86,6 +51,56 @@
 
             Before shipping remove this XAML and the image itself.-->
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="Voice Quiz" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0" Foreground="#FFE71F1F" FontFamily="Calibri"/>
+            <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="Calibri" OpacityMask="#FFFDFDF9" Height="88">
+				<Run Text="Quiz 1.0">
+					<Run.Foreground>
+						<SolidColorBrush Color="#FFF31F1F">
+							<SolidColorBrush.RelativeTransform>
+								<MatrixTransform Matrix="Identity"/>
+							</SolidColorBrush.RelativeTransform>
+							<SolidColorBrush.Transform>
+								<MatrixTransform Matrix="Identity"/>
+							</SolidColorBrush.Transform>
+						</SolidColorBrush>
+					</Run.Foreground>
+				</Run>
+            </TextBlock>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Margin="10,103,0,10" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="128*"/>
+                <ColumnDefinition Width="14*"/>
+                <ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="66*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="TextBlockTimer" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" Margin="39,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" Height="74" Foreground="#FF1F11A4" FontFamily="Segoe Keycaps" FontSize="45" RenderTransformOrigin="0.495,0.5" Grid.ColumnSpan="2"/>
+            <Image x:Name="playSound" HorizontalAlignment="Left" Grid.Row="0"  Height="75" Margin="18,47,0,0" VerticalAlignment="Top" Width="108" RenderTransformOrigin="-0.68,0.359" Source="/Resources/playSound.png" Grid.Column="1"/>
+
+            <Button x:Name="btnSpeakAnswer" Content="SpeakAnswer"  HorizontalAlignment="Left" Margin="118,127,0,0" VerticalAlignment="Top" Click="btnSpeakAnswer_Click" FontFamily="Calibri" Background="#FFF11F1F" Foreground="Black" RenderTransformOrigin="1.247,0.42" Height="89" Width="218" Grid.ColumnSpan="4" Grid.Column="1"/>
+            <TextBox x:Name="TextBoxVoice" HorizontalAlignment="Left" Height="72" Margin="162,216,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="284" Background="#FFE71F1F" FontFamily="Calibri" Foreground="Black" IsReadOnly="True" FontWeight="ExtraBlack" Grid.ColumnSpan="4" Grid.Column="1"/>
+            <TextBlock x:Name="Question" HorizontalAlignment="Left" Margin="0,235,0,0" TextWrapping="Wrap" Text="Your Answer" VerticalAlignment="Top" Width="157" Height="72" FontSize="25.33" FontFamily="Calibri" Foreground="Black" Grid.Column="1"/>
+            <Button x:Name="btnYes" Content="Yes" HorizontalAlignment="Left" Margin="0,307,0,0" VerticalAlignment="Top" Click="btnYes_Click" Background="#FFE71F1F" FontFamily="Calibri" Foreground="Black" RenderTransformOrigin="0.438,-0.029" Width="126" Height="98" Grid.Column="1"/>
+            <Button x:Name="btnNo" Content="No" HorizontalAlignment="Left" Margin="162,307,0,0" VerticalAlignment="Top" Click="btnNo_Click" FontFamily="Calibri" Foreground="Black" Background="#FFE71F1F" Width="127" Height="98" Grid.ColumnSpan="3" Grid.Column="1"/>
+            <Button x:Name="btnNextQuestion" Content="Next Question" HorizontalAlignment="Left" Margin="118,410,0,0" VerticalAlignment="Top" Click="btnNextQuestion_Click" Foreground="Black" Background="#FFE71F1F" FontFamily="Calibri" Width="218" Height="93" Grid.ColumnSpan="4" Grid.Column="1"/>
+            <Button x:Name="btnPass" Content="Pass" HorizontalAlignment="Left" Margin="39,307,0,0" VerticalAlignment="Top" Background="#FFE71F1F" BorderBrush="White" Foreground="Black" Width="123" Height="98" FontFamily="Calibri" Click="btnPass_Click" Grid.ColumnSpan="2" Grid.Column="3"/>
+            <TextBlock x:Name="txtBlockMessage" HorizontalAlignment="Left" Margin="18,503,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="399" Height="60" Foreground="Black" FontFamily="Calibri" FontSize="24" FontWeight="Black" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="4" UseLayoutRounding="False" d:LayoutRounding="Auto" Grid.Column="1">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform Rotation="0.22"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+
+            <UI:AdControl ApplicationId="test_client" AdUnitId="Image480_80" HorizontalAlignment="Left" Height="80" VerticalAlignment="Bottom" Width="480" Grid.ColumnSpan="5"/>
+
+        </Grid>
+
+
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -2,7 +2,7 @@
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
   <App xmlns="" ProductID="{cb723836-9547-4c5b-bd32-350c782e8b1c}" Title="PhoneVoice" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="PhoneVoice author" Description="Sample description" Publisher="PhoneVoice" PublisherID="{ff7eaedf-9491-463a-b64e-000b5be9688a}">
-    <IconPath IsRelative="true" IsResource="false">VoiceQuizIcon.png</IconPath>
+    <IconPath IsRelative="true" IsResource="false">VoiceQuizIconNew.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
@@ -11,6 +11,8 @@
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
       <Capability Name="ID_CAP_MICROPHONE" />
       <Capability Name="ID_CAP_SPEECH_RECOGNITION" />
+      <Capability Name="ID_CAP_PHONEDIALER" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="StartPage.xaml" />

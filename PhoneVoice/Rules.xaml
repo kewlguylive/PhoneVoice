@@ -1,11 +1,12 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="PhoneVoice.Rules"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"
+    x:Class="PhoneVoice.Rules"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -21,7 +22,7 @@
         </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/testTrialTwo.png"
-                    Stretch="UniformToFill" />
+				Stretch="UniformToFill" />
         </Grid.Background>
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28" Loaded="OnLoad">
@@ -29,6 +30,7 @@
             <TextBlock Text="Rules 1.0" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FFF11F1F" FontFamily="Calibri"/>
         </StackPanel>
 
+        <!--<TextBlock x:Name="txtBlockText" HorizontalAlignment="Left" Margin="12,27,0,0" Grid.Row="1"  Text="{Binding Path=ButtonText}" TextWrapping="Wrap"  VerticalAlignment="Top" Width="456" Height="560" Foreground="Black" FontWeight="Bold"/>-->
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Margin="0,130,24,23" Grid.RowSpan="1">
             <Grid.ColumnDefinitions>
@@ -73,8 +75,8 @@
         <TextBox IsReadOnly="True" HorizontalAlignment="Left" Height="62" Margin="97,266,0,0" Grid.Row="1" TextWrapping="Wrap" Text="If Pass is Pressed You Lose a Point" VerticalAlignment="Top" Width="383" BorderThickness="1" FontFamily="Calibri" FontSize="22"/>
         <TextBlock HorizontalAlignment="Left" Margin="12,325,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Step 10" VerticalAlignment="Top" FontFamily="Calibri" FontSize="21" Foreground="Black" Height="37" Width="78" RenderTransformOrigin="0.397,0.946"/>
         <TextBox IsReadOnly="True" HorizontalAlignment="Left" Height="86" Margin="97,307,0,0" Grid.Row="1" TextWrapping="Wrap" Text="If Back/Start is Pressed after hearing question You Lose a Point" VerticalAlignment="Top" Width="383" FontFamily="Calibri" FontSize="22" BorderThickness="1"/>
-        <Button Content="Home Screen" HorizontalAlignment="Left" Margin="143,410,0,0" Grid.Row="1" VerticalAlignment="Top" Width="187" FontFamily="Calibri" Background="#FFE71F1F" Foreground="Black" Click="Button_Click"/>
-        <!--<TextBlock x:Name="txtBlockText" HorizontalAlignment="Left" Margin="12,27,0,0" Grid.Row="1"  Text="{Binding Path=ButtonText}" TextWrapping="Wrap"  VerticalAlignment="Top" Width="456" Height="560" Foreground="Black" FontWeight="Bold"/>-->
+        <Button Content="Home Screen" HorizontalAlignment="Left" Margin="144,380,0,0" Grid.Row="1" VerticalAlignment="Top" Width="187" FontFamily="Calibri" Background="#FFE71F1F" Foreground="Black" Click="Button_Click" Height="56" BorderThickness="1" Padding="0"/>
+        <UI:AdControl ApplicationId="test_client" AdUnitId="Image480_80" HorizontalAlignment="Left" Height="64" Margin="0,436,0,0" Grid.Row="1" VerticalAlignment="Top" Width="480"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -143,9 +143,10 @@
     <Content Include="Assets\testTrialTwo.png" />
     <Content Include="IconicTileMediumLarge.png" />
     <Content Include="IconicTileSmall.png" />
+    <Content Include="Image1.png" />
     <Content Include="Resources\playSound.png" />
     <Content Include="Assets\testTrialOne.png" />
-    <Content Include="VoiceQuizIcon.png" />
+    <Content Include="VoiceQuizIconNew.png" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
@@ -190,6 +191,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Advertising.Mobile, Version=6.2.960.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="microsoft.advertising.mobile.ui, Version=6.2.960.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Maps, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Sqlite">
       <HintPath>..\packages\sqlite-net-wp8.3.8.5\lib\windowsphone8\Sqlite.winmd</HintPath>
     </Reference>

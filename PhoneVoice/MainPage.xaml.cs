@@ -8,17 +8,17 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using PhoneVoice.Resources;
+using VoiceQuiz.Resources;
 using Windows.Phone.Speech.VoiceCommands;
 using Microsoft.Phone.Tasks;
 using Windows.Phone.Speech.Recognition;
 using Windows.Phone.Speech.Synthesis;
 using SQLite;
-using PhoneVoice.Model;
+using VoiceQuiz.Model;
 using System.Windows.Threading;
 using System.Windows.Media;
 
-namespace PhoneVoice
+namespace VoiceQuiz
 {
     public partial class MainPage : PhoneApplicationPage
     {
@@ -95,7 +95,7 @@ namespace PhoneVoice
         }
         private async void RegisterVoiceCommands()
         {
-            await VoiceCommandService.InstallCommandSetsFromFileAsync(new Uri("ms-appx:///VoiceCommandDefinitionPhoneVoice.xml", UriKind.RelativeOrAbsolute));
+            await VoiceCommandService.InstallCommandSetsFromFileAsync(new Uri("ms-appx:///VoiceCommandDefinitionVoiceQuiz.xml", UriKind.RelativeOrAbsolute));
         }
         private int CalculateScore()
         {

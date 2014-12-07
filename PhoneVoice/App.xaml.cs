@@ -6,7 +6,7 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using PhoneVoice.Resources;
+using VoiceQuiz.Resources;
 using Windows.Storage;
 using System.IO;
 using System.IO.IsolatedStorage;
@@ -14,7 +14,7 @@ using Windows.ApplicationModel;
 using System.Threading.Tasks;
 
 
-namespace PhoneVoice
+namespace VoiceQuiz
 {
     public partial class App : Application
     {

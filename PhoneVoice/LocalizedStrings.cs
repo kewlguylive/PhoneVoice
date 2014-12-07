@@ -1,6 +1,6 @@
-﻿using PhoneVoice.Resources;
+﻿using VoiceQuiz.Resources;
 
-namespace PhoneVoice
+namespace VoiceQuiz
 {
     /// <summary>
     /// Provides access to string resources.

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Phone
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneVoice", "PhoneVoice\PhoneVoice.csproj", "{CB723836-9547-4C5B-BD32-350C782E8B1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceQuiz", "PhoneVoice\VoiceQuiz.csproj", "{CB723836-9547-4C5B-BD32-350C782E8B1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

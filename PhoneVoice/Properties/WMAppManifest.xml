@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{cb723836-9547-4c5b-bd32-350c782e8b1c}" Title="PhoneVoice" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="PhoneVoice author" Description="Sample description" Publisher="PhoneVoice" PublisherID="{ff7eaedf-9491-463a-b64e-000b5be9688a}">
+  <App xmlns="" ProductID="{cb723836-9547-4c5b-bd32-350c782e8b1c}" Title="VoiceQuiz" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Preetham Uppu" Description="Sample description" Publisher="Preetham Uppu" PublisherID="{ff7eaedf-9491-463a-b64e-000b5be9688a}">
     <IconPath IsRelative="true" IsResource="false">VoiceQuizIconNew.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -19,12 +19,12 @@
       <DefaultTask Name="_default" NavigationPage="StartPage.xaml" />
     </Tasks>
     <Tokens>
-      <PrimaryToken TokenID="PhoneVoiceToken" TaskName="_default">
+      <PrimaryToken TokenID="VoiceQuizToken" TaskName="_default">
         <TemplateFlip>
           <SmallImageURI IsRelative="true" IsResource="false">IconicTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">IconicTileMediumLarge.png</BackgroundImageURI>
-          <Title>PhoneVoice</Title>
+          <Title>VoiceQuiz</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 
-namespace PhoneVoice.Model
+namespace VoiceQuiz.Model
 {
     public class QuizContent
     {

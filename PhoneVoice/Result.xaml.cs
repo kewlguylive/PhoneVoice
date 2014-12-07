@@ -8,7 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace PhoneVoice
+namespace VoiceQuiz
 {
     public partial class Result : PhoneApplicationPage
     {

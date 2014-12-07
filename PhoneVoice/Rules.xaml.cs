@@ -32,9 +32,5 @@ namespace PhoneVoice
         public static readonly DependencyProperty ButtonTextProperty =
             DependencyProperty.Register("ButtonText", typeof(string), typeof(Rules), new System.Windows.PropertyMetadata(""));
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/StartPage.xaml", UriKind.Relative));
-        }
     }
 }

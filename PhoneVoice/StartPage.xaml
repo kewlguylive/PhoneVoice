@@ -35,7 +35,7 @@
             <Button x:Name="btnAbout" Content="How to Play" HorizontalAlignment="Left" Margin="134,94,0,0" VerticalAlignment="Top" Width="201" FontFamily="Calibri" Foreground="Black" Background="#FFF11F1F" Height="88" Click="btnAbout_Click"/>
             <Button x:Name="btnStart" Content="Start Quiz" HorizontalAlignment="Left" Margin="134,203,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.696,0.434" Width="201" Background="#FFF11F1F" FontFamily="Calibri" Foreground="Black" Height="88" Click="btnStart_Click"/>
 
-            <UI:AdControl ApplicationId="test_client" AdUnitId="Image480_80" HorizontalAlignment="Left" Height="90" Margin="0,525,0,0" VerticalAlignment="Top" Width="456"/>
+            <UI:AdControl ApplicationId="test_client" AdUnitId="Image480_80" HorizontalAlignment="Left" Height="80" Margin="-11,535,-13,0" VerticalAlignment="Top" Width="480"/>
 
         </Grid>
     </Grid>

@@ -54,7 +54,7 @@
 
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="15,-2,0,5.333" Grid.Row="5" TextWrapping="Wrap" Text="Step 01" Width="70" Foreground="Black" Grid.ColumnSpan="2" FontFamily="Calibri" FontSize="21"/>
-            <TextBox IsReadOnly="True" Grid.Column="3" HorizontalAlignment="Left" Height="66" Margin="22,-16,-20,0" Grid.Row="5" TextWrapping="Wrap" Text="Press Start Game" VerticalAlignment="Top" Width="381" BorderThickness="1" FontFamily="Calibri" FontSize="22"/>
+            <TextBox IsReadOnly="True" Grid.Column="3" HorizontalAlignment="Left" Height="66" Margin="22,-16,-20,0" Grid.Row="5" TextWrapping="Wrap" Text="Press Start Quiz" VerticalAlignment="Top" Width="381" BorderThickness="1" FontFamily="Calibri" FontSize="22"/>
             <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="15,44,0,-8" Grid.Row="5" TextWrapping="Wrap" Text="Step 02" Width="80" Foreground="Black" Grid.ColumnSpan="2" Grid.RowSpan="6" FontSize="21" FontFamily="Calibri"/>
             <TextBox IsReadOnly="True" Grid.Column="3" HorizontalAlignment="Left" Height="69" Margin="22,28,-20,0" Grid.Row="5" TextWrapping="Wrap" Text="Listen to Question" VerticalAlignment="Top" Width="381" BorderThickness="1" Grid.RowSpan="6" FontFamily="Calibri" FontSize="22"/>
             <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="15,45.333,0,-54" Grid.Row="10" TextWrapping="Wrap" Text="Step 03" VerticalAlignment="Top" Width="75" Height="54" Foreground="Black" Grid.ColumnSpan="2" FontFamily="Calibri" FontSize="21"/>

@@ -42,7 +42,7 @@ namespace VoiceQuiz
         public MainPage()
         {
             InitializeComponent();
-            RegisterVoiceCommands();
+           // RegisterVoiceCommands();
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
             
@@ -93,10 +93,10 @@ namespace VoiceQuiz
             }
             TextBlockTimer.Text = timeLimit.ToString(); 
         }
-        private async void RegisterVoiceCommands()
-        {
-            await VoiceCommandService.InstallCommandSetsFromFileAsync(new Uri("ms-appx:///VoiceCommandDefinitionVoiceQuiz.xml", UriKind.RelativeOrAbsolute));
-        }
+        //private async void RegisterVoiceCommands()
+        //{
+        //    await VoiceCommandService.InstallCommandSetsFromFileAsync(new Uri("ms-appx:///VoiceCommandDefinitionVoiceQuiz.xml", UriKind.RelativeOrAbsolute));
+        //}
         private int CalculateScore()
         {
             if (dbConn != null)
@@ -175,39 +175,39 @@ namespace VoiceQuiz
                 timerStart();
             }
             // Is this a new activation or a resurrection from tombstone?
-            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New)
-            {
-                // Was the app launched using a voice command?
-                if (NavigationContext.QueryString.ContainsKey("voiceCommandName"))
-                {
-                    // If so, get the name of the voice command.
-                    string voiceCommandName
-                      = NavigationContext.QueryString["voiceCommandName"];
+            //if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New)
+            //{
+            //    // Was the app launched using a voice command?
+            //    if (NavigationContext.QueryString.ContainsKey("voiceCommandName"))
+            //    {
+            //        // If so, get the name of the voice command.
+            //        string voiceCommandName
+            //          = NavigationContext.QueryString["voiceCommandName"];
 
-                    // Define app actions for each voice command name.
-                    switch (voiceCommandName)
-                    {
-                        case "PlayGame":
-                            string viewWidgetOne = NavigationContext.QueryString["reco"];
-                            TextBoxVoice.Text = viewWidgetOne;
-                            // Add code to display specified widgets.
-                            break;
+            //        // Define app actions for each voice command name.
+            //        switch (voiceCommandName)
+            //        {
+            //            case "PlayGame":
+            //                string viewWidgetOne = NavigationContext.QueryString["reco"];
+            //                TextBoxVoice.Text = viewWidgetOne;
+            //                // Add code to display specified widgets.
+            //                break;
 
-                        case "PlayLevel":
-                            string viewWidgetTwo = NavigationContext.QueryString["reco"];
+            //            case "PlayLevel":
+            //                string viewWidgetTwo = NavigationContext.QueryString["reco"];
 
-                            TextBoxVoice.Text = viewWidgetTwo;
-                            // Add code to display specified widgets.
-                            break;
+            //                TextBoxVoice.Text = viewWidgetTwo;
+            //                // Add code to display specified widgets.
+            //                break;
 
-                        // Add cases for other voice commands. 
-                        default:
+            //            // Add cases for other voice commands. 
+            //            default:
 
-                            // There is no match for the voice command name.
-                            break;
-                    }
-                }
-            }
+            //                // There is no match for the voice command name.
+            //                break;
+            //        }
+            //    }
+            //}
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {

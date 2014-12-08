@@ -7,9 +7,9 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("VoiceQuiz")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Voice Enabled Quiz App")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Preetham")]
 [assembly: AssemblyProduct("VoiceQuiz")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]

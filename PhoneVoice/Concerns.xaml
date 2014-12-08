@@ -36,7 +36,7 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please Tweet Your Comments" VerticalAlignment="Top" Width="263" Height="38" FontFamily="Calibri" FontSize="21" Foreground="Black" FontWeight="Black" Margin="0,10,0,0"/>
             <Button x:Name="btnTwitter" Content="Twitter  @VoiceQuiz" HorizontalAlignment="Left" Margin="102,53,0,0" VerticalAlignment="Top" Width="270" Height="79" FontFamily="Calibri" Background="#FFE71F1F" Foreground="Black" FontWeight="ExtraBlack" Click="btnTwitter_Click"/>
 
-            <UI:AdControl  ApplicationId="d54b22e1-5afd-4b4a-b0d7-ae452ae38890" AdUnitId="197911" HorizontalAlignment="Left" Height="80" Margin="-11,535,-13,0" VerticalAlignment="Top" Width="480" FontFamily="Calibri"/>
+            <UI:AdControl  ApplicationId="d54b22e1-5afd-4b4a-b0d7-ae452ae38890" AdUnitId="197911" HorizontalAlignment="Left" Height="80" Margin="-11,535,-13,0" VerticalAlignment="Top" Width="480" FontFamily="Calibri" ErrorOccurred="OnAdError"/>
 
         </Grid>
     </Grid>

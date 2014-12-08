@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Advertising;
+using Microsoft.Advertising.Mobile.UI;
 
 namespace VoiceQuiz
 {
@@ -15,6 +17,10 @@ namespace VoiceQuiz
         public StartPage()
         {
             InitializeComponent();
+        }
+        private void OnAdError(object sender, AdErrorEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("AdControl error (" + ((AdControl)sender).Name + "): " + e.Error + " ErrorCode: " + e.ErrorCode.ToString());
         }
 
         private void btnAbout_Click(object sender, RoutedEventArgs e)

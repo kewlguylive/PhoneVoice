@@ -17,6 +17,8 @@ using SQLite;
 using VoiceQuiz.Model;
 using System.Windows.Threading;
 using System.Windows.Media;
+using Microsoft.Advertising;
+using Microsoft.Advertising.Mobile.UI;
 
 namespace VoiceQuiz
 {
@@ -237,6 +239,10 @@ namespace VoiceQuiz
                     dbConn.Close();
                 }  
             }
+        }
+        private void OnAdError(object sender, AdErrorEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("AdControl error (" + ((AdControl)sender).Name + "): " + e.Error + " ErrorCode: " + e.ErrorCode.ToString());
         }
 
         private async void btnSpeakAnswer_Click(object sender, RoutedEventArgs e)

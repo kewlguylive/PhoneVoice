@@ -96,7 +96,7 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
 
-            <UI:AdControl ApplicationId="test_client" AdUnitId="Image480_80" HorizontalAlignment="Left" Height="80" VerticalAlignment="Bottom" Width="480" Grid.ColumnSpan="5"/>
+            <UI:AdControl ApplicationId="d54b22e1-5afd-4b4a-b0d7-ae452ae38890" AdUnitId="197911" HorizontalAlignment="Left" Height="80" VerticalAlignment="Bottom" Width="480" Grid.ColumnSpan="5"/>
 
         </Grid>
 

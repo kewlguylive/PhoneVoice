@@ -75,7 +75,7 @@
         <TextBox IsReadOnly="True" HorizontalAlignment="Left" Height="62" Margin="97,266,0,0" Grid.Row="1" TextWrapping="Wrap" Text="If Pass is Pressed You Lose a Point" VerticalAlignment="Top" Width="383" BorderThickness="1" FontFamily="Calibri" FontSize="22"/>
         <TextBlock HorizontalAlignment="Left" Margin="12,325,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Step 10" VerticalAlignment="Top" FontFamily="Calibri" FontSize="21" Foreground="Black" Height="37" Width="78" RenderTransformOrigin="0.397,0.946"/>
         <TextBox IsReadOnly="True" HorizontalAlignment="Left" Height="86" Margin="97,307,0,0" Grid.Row="1" TextWrapping="Wrap" Text="If Back/Start is Pressed after hearing question You Lose a Point" VerticalAlignment="Top" Width="383" FontFamily="Calibri" FontSize="22" BorderThickness="1"/>
-        <UI:AdControl ApplicationId="test_client" AdUnitId="Image480_80" HorizontalAlignment="Right" Margin="0,420,0,0" Grid.Row="1" VerticalAlignment="Top" Width="480" Height="80"/>
+        <UI:AdControl ApplicationId="d54b22e1-5afd-4b4a-b0d7-ae452ae38890" AdUnitId="197911" HorizontalAlignment="Right" Margin="0,420,0,0" Grid.Row="1" VerticalAlignment="Top" Width="480" Height="80"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -11,6 +11,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x86 = Release|x86
+		Store|Any CPU = Store|Any CPU
+		Store|ARM = Store|ARM
+		Store|x86 = Store|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -31,6 +34,15 @@ Global
 		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Release|x86.ActiveCfg = Release|x86
 		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Release|x86.Build.0 = Release|x86
 		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Release|x86.Deploy.0 = Release|x86
+		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Store|Any CPU.ActiveCfg = Store|Any CPU
+		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Store|Any CPU.Build.0 = Store|Any CPU
+		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Store|Any CPU.Deploy.0 = Store|Any CPU
+		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Store|ARM.ActiveCfg = Store|ARM
+		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Store|ARM.Build.0 = Store|ARM
+		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Store|ARM.Deploy.0 = Store|ARM
+		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Store|x86.ActiveCfg = Store|x86
+		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Store|x86.Build.0 = Store|x86
+		{CB723836-9547-4C5B-BD32-350C782E8B1C}.Store|x86.Deploy.0 = Store|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

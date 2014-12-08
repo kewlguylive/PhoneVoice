@@ -27,5 +27,10 @@ namespace VoiceQuiz
         {
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
+
+        private void btnConcerns_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Concerns.xaml", UriKind.Relative));
+        }
     }
 }
